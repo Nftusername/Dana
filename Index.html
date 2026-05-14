@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>DANA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; }
+    .screen { display: none; }
+    .active { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- SCREEN 1: NOMOR HP -->
+  <div id="screen1" class="screen active min-h-screen bg-gradient-to-br from-blue-600 to-blue-500 text-white">
+    <div class="px-6 pt-12">
+      <div class="text-center">
+        <div class="inline-block bg-white text-blue-600 font-bold text-5xl px-10 py-4 rounded-3xl mb-10">DANA</div>
+      </div>
+      <h1 class="text-2xl font-semibold text-center">Masukkan nomor HP kamu<br>untuk lanjut</h1>
+    </div>
+
+    <div class="px-6 mt-12">
+      <div class="bg-white/20 border border-white/30 rounded-3xl p-2">
+        <div class="flex bg-white/10 rounded-3xl">
+          <div class="px-6 py-6 text-lg font-medium">+62</div>
+          <input id="phone" type="tel" placeholder="8123456789" 
+            class="flex-1 bg-transparent outline-none text-lg py-6">
+        </div>
+      </div>
+    </div>
+
+    <div class="px-6 mt-auto pb-10">
+      <button onclick="goToPassword()" 
+        class="w-full bg-white text-blue-600 font-bold py-4 rounded-3xl text-lg">
+        LANJUTKAN
+      </button>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: PASSWORD -->
+  <div id="screen2" class="screen min-h-screen bg-gradient-to-br from-blue-600 to-blue-500 text-white">
+    <div class="px-6 pt-12">
+      <div onclick="backToScreen1()" class="inline-block text-white mb-6 cursor-pointer">← Kembali</div>
+      
+      <div class="text-center">
+        <div class="inline-block bg-white text-blue-600 font-bold text-4xl px-8 py-3 rounded-3xl mb-8">DANA</div>
+      </div>
+      
+      <h1 class="text-2xl font-semibold text-center">Masukkan Password</h1>
+      <p class="text-center mt-3 text-white/80" id="displayPhone">+62 8123456789</p>
+    </div>
+
+    <div class="px-6 mt-10">
+      <input id="password" type="password" placeholder="Password" 
+        class="w-full bg-white/20 border border-white/30 rounded-3xl py-5 px-6 text-center text-lg outline-none">
+    </div>
+
+    <div class="px-6 mt-auto pb-10">
+      <button onclick="goToHome()" 
+        class="w-full bg-white text-blue-600 font-bold py-4 rounded-3xl text-lg">
+        MASUK
+      </button>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: HALAMAN SALDO -->
+  <div id="screen3" class="screen min-h-screen bg-gray-50">
+
+    <div class="bg-gradient-to-br from-blue-600 to-blue-500 text-white px-5 pt-8 pb-10">
+      <div class="flex justify-end">
+        <div class="bg-white text-blue-600 font-bold px-6 py-2 rounded-3xl">DANA</div>
+      </div>
+      <div class="mt-12">
+        <div class="text-3xl font-bold">Rp 23.340.288</div>
+      </div>
+    </div>
+
+    <!-- Quick Buttons -->
+    <div class="grid grid-cols-4 gap-3 px-4 -mt-6">
+      <div class="bg-white rounded-3xl py-4 text-center shadow text-sm">➕<br>Isi Saldo</div>
+      <div class="bg-white rounded-3xl py-4 text-center shadow text-sm">💰<br>Minta</div>
+      <div class="bg-white rounded-3xl py-4 text-center shadow text-sm">↑<br>Kirim</div>
+      <div class="bg-white rounded-3xl py-4 text-center shadow text-sm">💬<br>Pesan</div>
+    </div>
+
+    <!-- Banner -->
+    <div class="mx-4 mt-8 bg-gradient-to-r from-pink-500 to-rose-500 text-white rounded-3xl p-5">
+      <div class="font-bold">Kuotamu Habis?</div>
+      <div class="mt-1">Masih Bisa Beli Pulsa!</div>
+      <button onclick="alert('Mockup - Beli Pulsa')" class="mt-4 w-full bg-white text-pink-600 font-bold py-3 rounded-3xl">
+        BELI YUK
+      </button>
+    </div>
+
+  </div>
+
+  <script>
+    function goToPassword() {
+      const phone = document.getElementById('phone').value.trim();
+      if (phone.length < 9) {
+        alert("Masukkan nomor HP yang valid!");
+        return;
+      }
+      document.getElementById('displayPhone').textContent = "+62 " + phone;
+      document.getElementById('screen1').classList.remove('active');
+      document.getElementById('screen2').classList.add('active');
+    }
+
+    function backToScreen1() {
+      document.getElementById('screen2').classList.remove('active');
+      document.getElementById('screen1').classList.add('active');
+    }
+
+    function goToHome() {
+      const pass = document.getElementById('password').value.trim();
+      if (pass.length < 4) {
+        alert("Masukkan password!");
+        return;
+      }
+      document.getElementById('screen2').classList.remove('active');
+      document.getElementById('screen3').classList.add('active');
+    }
+  </script>
+</body>
+</html>
